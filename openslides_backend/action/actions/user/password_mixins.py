@@ -34,7 +34,7 @@ class SetPasswordMixin(Action):
 
         password = instance.pop("password")
         ph = argon2.PasswordHasher(time_cost=1, memory_cost=256, parallelism=4, hash_len=32)
-        entry["password"] = ph.hash(entry["default_password"])
+        instance["password"] = ph.hash(instance["default_password"])
         if instance.pop("set_as_default", False):
             instance["default_password"] = password
 
